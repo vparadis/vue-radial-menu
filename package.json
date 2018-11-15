@@ -1,12 +1,19 @@
 {
-  "name": "my-vue-library",
-  "version": "0.1.0",
-  "private": true,
+  "name": "vue-radial-menu",
+  "version": "0.1.1",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "serve": "vue-cli-service serve --open",
+    "build": "vue-cli-service build --target lib --name radialMenu ./src/components/index.js",
     "lint": "vue-cli-service lint"
   },
+  "main": "./dist/radialMenu.common.js",
+  "files": [
+    "dist/*",
+    "src/*",
+    "public/*",
+    "*.json",
+    "*.js"
+  ],
   "dependencies": {
     "vue": "^2.5.17"
   },

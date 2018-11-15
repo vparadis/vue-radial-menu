@@ -30,8 +30,7 @@ Basic use case :
 </template>
 
 <script>
-import RadialMenu from 'vue-radial-menu'
-import RadialMenuItem from 'vue-radial-menu'
+import { RadialMenu,  RadialMenuItem } from 'vue-radial-menu'
 
 export default {
   name: 'app',
@@ -61,9 +60,10 @@ Note that no prop is actually required
 | itemSize | Number | 36px | The size in pixels of menu items. |
 | rotate | Number | 0 | An angle value to rotate the menu. Positive values will rotate the menu counter clockwise. |
 | radius | Number | 100 | The radius of the circle to form with the items. |
-| button-class | String | None | A class to add to the main button. |
 
-### Item options
+### RadialMenuItem props
+
+This component has no props that should be assigned by the user.
 
 ## Liscense
 

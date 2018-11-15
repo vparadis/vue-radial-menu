@@ -1,8 +1,7 @@
 <template>
   <transition name="radial-menu-item">
-      <div :class="['menu-item', itemClass]" :style="style" @click="handleClick">
-          <component v-if="component" :is="component"></component>
-          <span v-else>{{ text }}</span>
+      <div class="menu-item" :style="style" @click="handleClick">
+          <slot></slot>
       </div>
   </transition>
 </template>
@@ -40,29 +39,22 @@
 <script>
 const RadialMenuItem = {
   name: 'RadialMenuItem',
-  props: {
-    item: Object
-  },
+  props: ['top', 'left', 'height', 'width', 'onClick'],
   data () {
-    const { top, left, height, width, style, component, text, onClick, itemClass } = this.item
-    return {
-      text,
-      onClick,
-      itemClass,
-      component: component ? { template: component } : null,
-      style: {
-        ...style,
-        top: top + 'px',
-        left: left + 'px',
-        width: width + 'px',
-        height: height + 'px'
-      }
+    const { top, left, height, width } = this
+    return { 
+       style: {
+         top: top + 'px',
+         left: left + 'px',
+         width: width + 'px',
+         height: height + 'px'
+       }
     }
   },
   methods: {
     handleClick (e) {
-      this.$emit('click', e)
       this.onClick && this.onClick(e)
+      this.$emit('click', e)
     }
   }
 }

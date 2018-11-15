@@ -8,74 +8,62 @@
 
 ## Basic usage
 
-Here is a very simple usage. Note the type of values and options passed down in the array.
+Basic use case :
 
-``` javascript
+``` html
 
 <template>
-    <div>
-        <radial-menu
-        style="bottom: 8px; left: calc(50% - 25px); position: fixed"
-        :items="arr"
-        :radius="130"
-        :item-size="50" />
-    </div>
+  <div id="app">
+    <radial-menu
+      style="top: calc(50% - 18px); left: calc(50% - 25px); position: fixed"
+      :itemSize="50"
+      :radius="120"
+      :angle-restriction="180">
+        <radial-menu-item @click="handleClick">
+          <span>foo</span>
+        </radial-menu-item>
+        <radial-menu-item @click="handleClick">
+          <span>foo2</span>
+        </radial-menu-item>
+      </radial-menu>
+  </div>
 </template>
 
-import RadialMenu from './components/RadialMenu.vue'
+<script>
+import RadialMenu from 'vue-radial-menu'
+import RadialMenuItem from 'vue-radial-menu'
+
 export default {
-  name: 'App',
+  name: 'app',
   components: {
-    RadialMenu
+    RadialMenu,
+    RadialMenuItem
   },
-  data () {
-    return {
-      arr: [
-        1, 2,
-        'Hello',
-        {
-          component: '<span style="color: white">World</span>',
-          style: {
-            backgroundColor: 'rgba(0,0,0,0.4)'
-          }
-        },
-        {
-          text: 'Foo',
-          onClick: () => console.log('bar')
-        }
-      ]
+  methods: {
+    handleClick () {
+      console.log('bar')
     }
   }
 }
-...
+</script>
 ```
 
 ## Options
 
-### Main component props
+### RadialMenu props
 
-| Name | Type | Required | Default Value | Description |
-| ---- | ---- | -------- | ------------- | ----------- |
-| items | Array | Yes | None | The items to pass down to the menu. See item options below for more info. |
-| angle-description | Number | No | 180 | The maximum angle in a circle for the items to be displayed in. A value of 90 would represent the quarter of a circle, 180 half a circle and so on. |
-| size | Number | No | 50px | The size in pixels of the main button to open the menu. |
-| itemSize | Number | No | 36px | The size in pixels of menu items. |
-| rotate | Number | No | 0 | An angle value to rotate the menu. Positive values will rotate the menu counter clockwise. |
-| radius | Number | No | 100 | The radius of the circle to form with the items. |
-| button-class | String | No | None | A class to add to the main button. |
+Note that no prop is actually required
+
+| Name | Type  | Default Value | Description |
+| ---- | ----  | ------------- | ----------- |
+| angle-description | Number | 180 | The maximum angle in a circle for the items to be displayed in. A value of 90 would represent the quarter of a circle, 180 half a circle and so on. |
+| size | Number | 50px | The size in pixels of the main button to open the menu. |
+| itemSize | Number | 36px | The size in pixels of menu items. |
+| rotate | Number | 0 | An angle value to rotate the menu. Positive values will rotate the menu counter clockwise. |
+| radius | Number | 100 | The radius of the circle to form with the items. |
+| button-class | String | None | A class to add to the main button. |
 
 ### Item options
-*These options are to be passed within an object array through the* `items` *props in the main component.*
-
-Note that any value can be passed down. String and numbers are valid and will result in having said value in the button. However, for any more complex interaction an object is required. See options below.
-
-| Name | Type | Required | Default Value | Description |
-| ---- | ---- | -------- | ------------- | ----------- |
-| itemClass | String | No | '' | A class to add to the item. |
-| style | Object | No | None | A style object used to style the button. |
-| onClick | Function | No | None | A function to call when the option is clicked. |
-| text | String or Number | No | None | Text or number to display in the button. |
-| component | String template | No | None | A template to render within the button. Useful for icons. |
 
 ## Liscense
 

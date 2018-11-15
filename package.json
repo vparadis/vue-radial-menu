@@ -1,6 +1,6 @@
 {
   "name": "vue-radial-menu",
-  "version": "0.1.1",
+  "version": "0.1.4",
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build --target lib --name radialMenu ./src/components/index.js",

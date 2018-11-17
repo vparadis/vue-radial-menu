@@ -1,16 +1,12 @@
 <template>
   <div id="app">
     <radial-menu
-      style="top: calc(50% - 18px); left: calc(50% - 25px); position: fixed"
-      class="menu-item main"
+      style="top: calc(50% - 18px); left: calc(50% - 25px); position: fixed; background-color: white"
       :itemSize="50"
       :radius="120"
       :angle-restriction="180">
-        <radial-menu-item class="menu-item" @click="handleClick">
-          <span>{{menu}}</span>
-        </radial-menu-item>
-        <radial-menu-item class="menu-item" @click="handleClick">
-          <span>{{menu}}</span>
+        <radial-menu-item v-for="(item, index) in items" :key="index" style="background-color: white" @click="handleClick">
+          <span>{{item}}</span>
         </radial-menu-item>
       </radial-menu>
   </div>
@@ -28,12 +24,12 @@ export default {
   },
   data () {
     return {
-      menu: 'foo'
+      items: ['foo', 'bar', 'hello', 'world', 'more', 'items']
     }
   },
   methods: {
     handleClick () {
-      this.menu += '1'
+      console.log('Something')
     }
   }
 }
@@ -59,14 +55,5 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-}
-
-.menu-item {
-  background-color: white;
-  font-size: 16px;
-}
-
-.main {
-  font-size: 34px;
 }
 </style>

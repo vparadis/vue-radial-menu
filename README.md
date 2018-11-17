@@ -15,11 +15,15 @@ Suggested use :
 <template>
   <div id="app">
     <radial-menu
-      style="top: calc(50% - 18px); left: calc(50% - 25px); position: fixed; background-color: white"
+      style="margin: auto; margin-top: 300px; background-color: white"
       :itemSize="50"
       :radius="120"
       :angle-restriction="180">
-        <radial-menu-item v-for="(item, index) in items" :key="index" style="background-color: white" @click="handleClick">
+        <radial-menu-item 
+          v-for="(item, index) in items" 
+          :key="index" 
+          style="background-color: white" 
+          @click="handleClick">
           <span>{{item}}</span>
         </radial-menu-item>
       </radial-menu>

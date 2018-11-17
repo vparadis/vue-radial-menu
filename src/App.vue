@@ -2,14 +2,15 @@
   <div id="app">
     <radial-menu
       style="top: calc(50% - 18px); left: calc(50% - 25px); position: fixed"
+      class="menu-item main"
       :itemSize="50"
       :radius="120"
       :angle-restriction="180">
-        <radial-menu-item @click="handleClick">
-          <span>foo</span>
+        <radial-menu-item class="menu-item" @click="handleClick">
+          <span>{{menu}}</span>
         </radial-menu-item>
-        <radial-menu-item @click="handleClick">
-          <span>foo2</span>
+        <radial-menu-item class="menu-item" @click="handleClick">
+          <span>{{menu}}</span>
         </radial-menu-item>
       </radial-menu>
   </div>
@@ -25,9 +26,14 @@ export default {
     RadialMenu,
     RadialMenuItem
   },
+  data () {
+    return {
+      menu: 'foo'
+    }
+  },
   methods: {
     handleClick () {
-      console.log('bar')
+      this.menu += '1'
     }
   }
 }
@@ -53,5 +59,14 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.menu-item {
+  background-color: white;
+  font-size: 16px;
+}
+
+.main {
+  font-size: 34px;
 }
 </style>

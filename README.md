@@ -8,8 +8,6 @@
 
 ## Basic usage
 
-Basic use case :
-
 ``` html
 
 <template>
@@ -51,7 +49,8 @@ export default {
 
 ### RadialMenu props
 
-Note that no prop is actually required
+Note that no prop is actually required.
+Also take note that no style is given to the menu by default (other than it's position and round shape), you would do well to add your own class if you want color and such.
 
 | Name | Type  | Default Value | Description |
 | ---- | ----  | ------------- | ----------- |

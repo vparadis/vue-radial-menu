@@ -56,23 +56,10 @@ const RadialMenu = {
     },
     mounted () {
         document.addEventListener('click', this.closeMenuEvent);
-
-        // Manually add prop data to the items
-        const items = this.$slots.default
-            .filter((s) => s.componentOptions && s.componentOptions.tag === 'radial-menu-item') // Filter to only take the items that matter
-            .map((s) => s.componentOptions.propsData);
-        const { size, itemSize, angleRestriction, rotate, radius } = this;
-        const angle = angleRestriction > 300 || angleRestriction < -300 ? 300 : angleRestriction;
-        const frags = angle / (items.length - 1 || 1);
-        const angles = items.map((item, index) => ((Math.PI * (frags * index + rotate)) / 180));
-
-        items.forEach((propData, index) => {
-            propData.width = itemSize;
-            propData.height = itemSize;
-            propData.left = (size / 2) + Math.cos(angles[index]) * radius - (itemSize / 2);
-            propData.top = (size / 2) - Math.sin(angles[index]) * radius - (itemSize / 2);
-            propData.onClick = this.toggleMenu;
-        });
+        this.setChildProps();
+    },
+    updated () {
+        this.setChildProps();
     },
     beforeDestroy () {
         document.removeEventListener('click', this.closeMenuEvent);
@@ -83,6 +70,24 @@ const RadialMenu = {
         },
         toggleMenu () {
             this.open = !this.open;
+        },
+        setChildProps () {
+            // Manually add prop data to the items
+            const items = this.$slots.default
+                .filter((s) => s.componentOptions && s.componentOptions.tag === 'radial-menu-item') // Filter to only take the items that matter
+                .map((s) => s.componentOptions.propsData);
+            const { size, itemSize, angleRestriction, rotate, radius } = this;
+            const angle = angleRestriction > 300 || angleRestriction < -300 ? 300 : angleRestriction;
+            const frags = angle / (items.length - 1 || 1);
+            const angles = items.map((item, index) => ((Math.PI * (frags * index + rotate)) / 180));
+
+            items.forEach((propData, index) => {
+                propData.width = itemSize;
+                propData.height = itemSize;
+                propData.left = (size / 2) + Math.cos(angles[index]) * radius - (itemSize / 2);
+                propData.top = (size / 2) - Math.sin(angles[index]) * radius - (itemSize / 2);
+                propData.onClick = this.toggleMenu;
+            });
         }
     }
 };

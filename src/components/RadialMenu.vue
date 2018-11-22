@@ -69,7 +69,13 @@ const RadialMenu = {
             if (this.open && !this.$el.contains(e.target)) { this.toggleMenu(); }
         },
         toggleMenu () {
-            this.open = !this.open;
+            if (this.open) {
+                this.open = false
+                this.$emit('close')
+            } else {
+                this.open = true
+                this.$emit('open')
+            }
         },
         setChildProps () {
             // Manually add prop data to the items

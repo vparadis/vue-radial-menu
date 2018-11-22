@@ -72,9 +72,17 @@ Also take note that no color is given to the menu by default, you would do well 
 | rotate | Number | 0 | An angle value to rotate the menu. Positive values will rotate the menu counter clockwise. |
 | radius | Number | 100 | The radius of the circle to form with the items. |
 
-### RadialMenuItem props
+### RadialMenu events
+
+| Name | Params | Description |
+| ---- | ---- | ---- |
+| open | none | Triggered when the menu is opened. |
+| close | none | Triggered when the menu is closed. |
+
+### RadialMenuItem
 
 This component has no props that should be assigned by the user.
+This component only supports basic events.
 
 ## Liscense
 

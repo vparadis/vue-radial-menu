@@ -10,7 +10,7 @@
 
 For something like this :
 
-![Image](public/demo_180.gif?raw=true)
+![Image](https://raw.githubusercontent.com/vparadis/vue-radial-menu/master/public/demo_180.gif)
 
 ``` html
 

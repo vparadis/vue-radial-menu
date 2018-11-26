@@ -90,7 +90,7 @@ const RadialMenu = {
             items.forEach((propData, index) => {
                 propData.width = itemSize;
                 propData.height = itemSize;
-                propData.left = (size / 2) + Math.cos(angles[index]) * radius - (itemSize / 2);
+                propData.left = -1 * ((size / 2) + Math.cos(angles[index]) * radius - (itemSize / 2)); // -1 to have the items in the right order
                 propData.top = (size / 2) - Math.sin(angles[index]) * radius - (itemSize / 2);
                 propData.onClick = this.toggleMenu;
             });

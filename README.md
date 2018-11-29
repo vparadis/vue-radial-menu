@@ -67,9 +67,9 @@ Also take note that no color is given to the menu by default, you would do well 
 | Name | Type  | Default Value | Description |
 | ---- | ----  | ------------- | ----------- |
 | angle-restriction | Number | 180 | The maximum angle in a circle for the items to be displayed in. A value of 90 would represent the quarter of a circle, 180 half a circle and so on. |
-| size | Number | 50px | The size in pixels of the main button to open the menu. |
-| itemSize | Number | 36px | The size in pixels of menu items. |
-| rotate | Number | 0 | An angle value to rotate the menu. Positive values will rotate the menu counter clockwise. |
+| size | Number | 50 | The size in pixels of the main button to open the menu. |
+| itemSize | Number | 36 | The size in pixels of menu items. |
+| rotate | Number | 0 | An angle value to rotate the menu. Positive values will rotate the menu clockwise. |
 | radius | Number | 100 | The radius of the circle to form with the items. |
 
 ### RadialMenu events

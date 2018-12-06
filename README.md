@@ -2,15 +2,15 @@
 
 > Simple radial menu for vue2 apps
 
+![Image](https://raw.githubusercontent.com/vparadis/vue-radial-menu/master/public/demo_180.gif)
+
 ## Installation
 
 `npm i vue-radial-menu --save`
 
 ## Basic usage
 
-For something like this :
-
-![Image](https://raw.githubusercontent.com/vparadis/vue-radial-menu/master/public/demo_180.gif)
+### Menu in automatic state :
 
 ``` html
 
@@ -57,6 +57,59 @@ export default {
 </script>
 ```
 
+### Menu in manual mode
+
+``` html
+
+<template>
+  <div id="app">
+    <radial-menu
+      style="margin: auto; margin-top: 300px; background-color: white"
+      :itemSize="50"
+      :radius="120"
+      :angle-restriction="180"
+      :open="open" 
+      @click="() => handleClick('main')">
+        <radial-menu-item 
+          v-for="(item, index) in items" 
+          :key="index" 
+          style="background-color: white" 
+          @click="() => handleClick(item)">
+          <span>{{item}}</span>
+        </radial-menu-item>
+      </radial-menu>
+      <div style="color: rgba(0,0,0,0.6); margin-top: 16px;">{{ lastClicked }}</div>
+  </div>
+</template>
+
+<script>
+import RadialMenu from './components/RadialMenu.vue'
+import RadialMenuItem from './components/RadialMenuItem.vue'
+
+export default {
+  name: 'app',
+  components: {
+    RadialMenu,
+    RadialMenuItem
+  },
+  data () {
+    return {
+      items: ['foo', 'bar', 'hello', 'world', 'more', 'items'],
+      open: false,
+      lastClicked: 'click on something!'
+    }
+  },
+  methods: {
+    handleClick (item) {
+      this.lastClicked = item;
+      this.open = !this.open;
+    }
+  }
+}
+</script>
+
+```
+
 ## Options
 
 ### RadialMenu props
@@ -66,6 +119,7 @@ Also take note that no color is given to the menu by default, you would do well 
 
 | Name | Type  | Default Value | Description |
 | ---- | ----  | ------------- | ----------- |
+| open | Boolean | undefined | Force the menu to assume the given value. If this prop is not provided, the menu will handle the state on its own. Useful in cases where the user might want to make an action before displaying, i.e. displaying an overlay. Note that this can also be achieved by listening on the `open` and `close` events. |
 | angle-restriction | Number | 180 | The maximum angle in a circle for the items to be displayed in. A value of 90 would represent the quarter of a circle, 180 half a circle and so on. |
 | size | Number | 50 | The size in pixels of the main button to open the menu. |
 | itemSize | Number | 36 | The size in pixels of menu items. |
@@ -76,6 +130,7 @@ Also take note that no color is given to the menu by default, you would do well 
 
 | Name | Params | Description |
 | ---- | ---- | ---- |
+| click | none | Triggered when the main button is pressed. |
 | open | none | Triggered when the menu is opened. |
 | close | none | Triggered when the menu is closed. |
 

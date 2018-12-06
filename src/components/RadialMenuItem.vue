@@ -25,11 +25,6 @@
     font-size: 16px;
 }
 
-.vue-radial-menu-item:active, .vue-radial-menu-item:focus {
-  background-color: #D3D3D3;
-  transition: none;
-}
-
 .radial-vue-radial-menu-item-enter,
 .radial-vue-radial-menu-item-leave-to {
   top: 50% !important;

@@ -1,10 +1,10 @@
 <template>
     <div :style="style" class="vue-radial-menu-wrapper">
         <div
-            :class="['vue-radial-menu-container', open && 'open']"
+            :class="['vue-radial-menu-container', shouldOpen && 'open']"
             :style="style"
-            @click="toggleMenu">+</div>
-        <slot v-if="open" @click="toggleMenu"></slot>
+            @click="handleClick">+</div>
+        <slot v-if="shouldOpen"></slot>
     </div>
 </template>
 
@@ -42,23 +42,33 @@ const RadialMenu = {
         size: { type: Number, default: 50 },
         itemSize: { type: Number, default: 36 },
         rotate: { type: Number, default: 0 },
-        radius: { type: Number, default: 100 }
+        radius: { type: Number, default: 100 },
+        open: { type: Boolean, default: undefined }
+
     },
     data () {
         const { size } = this;
+        const manualMode = typeof(this.open) !== 'undefined'
         return {
-            open: false,
+            manualMode,
+            isOpen: false,
             style: {
                 width: size + 'px',
                 height: size + 'px'
             }
         };
     },
+    computed: {
+        shouldOpen () {
+            const { open, manualMode, isOpen } = this
+            return manualMode ? open : isOpen
+        }
+    },
     mounted () {
         document.addEventListener('click', this.closeMenuEvent);
         this.setChildProps();
     },
-    updated () {
+    beforeUpdate () {
         this.setChildProps();
     },
     beforeDestroy () {
@@ -66,14 +76,20 @@ const RadialMenu = {
     },
     methods: {
         closeMenuEvent (e) {
-            if (this.open && !this.$el.contains(e.target)) { this.toggleMenu(); }
+            if (this.shouldOpen && !this.$el.contains(e.target)) { this.toggleMenu(); }
+        },
+        handleClick () {
+            this.$emit('click')
+            this.toggleMenu()
         },
         toggleMenu () {
-            if (this.open) {
-                this.open = false
+            if (this.manualMode) return
+
+            if (this.isOpen) {
+                this.isOpen = false
                 this.$emit('close')
             } else {
-                this.open = true
+                this.isOpen = true
                 this.$emit('open')
             }
         },
@@ -92,7 +108,7 @@ const RadialMenu = {
                 propData.height = itemSize;
                 propData.left = -1 * ((size / 2) + Math.cos(angles[index]) * radius - (itemSize / 2)); // -1 to have the items in the right order
                 propData.top = (size / 2) - Math.sin(angles[index]) * radius - (itemSize / 2);
-                propData.onClick = this.toggleMenu;
+                propData.onClick = this.manualMode ? null : this.toggleMenu; // To prevent double emiting click event
             });
         }
     }

@@ -1,3 +1,7 @@
+# Important Notes
+
+This package is no longer supported. Feel free to fork it on github however.
+
 # vue-radial-menu
 
 > Simple radial menu for vue2 apps
